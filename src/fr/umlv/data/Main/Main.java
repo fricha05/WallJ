@@ -3,7 +3,11 @@ package fr.umlv.data.Main;
 import java.awt.Color;
 //import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
+import java.awt.image.BufferedImage;
 import java.io.*;
+
+import javax.imageio.ImageIO;
+
 import fr.umlv.data.Canvas.*;
 import fr.umlv.zen5.*;
 
@@ -12,6 +16,7 @@ public class Main {
     static class Area{
 //    	private Ellipse2D.Float ellipse = new Ellipse2D.Float(0, 0, 0, 0);
     	private Rectangle2D.Float rectangle = new Rectangle2D.Float(0, 0, 0, 0);
+    	
     	
 //    	void draw(ApplicationContext context, float x, float y) {
 //    		ScreenInfo screenInfo = context.getScreenInfo();
@@ -31,7 +36,7 @@ public class Main {
 //    	      });
 //    	    }
 
-	void drawTable(ApplicationContext context, Level lvl) {		
+	void drawTable(ApplicationContext context, Level lvl, int heightElem, int widthElem) {	
 			for (int i = 0; i < lvl.nbLine ; i++) {
 				for (int j = 0; j < lvl.nbCol; j++) {
 					final Element e = lvl.getLvl()[i][j];
@@ -39,15 +44,23 @@ public class Main {
 						String s = e.toString();
 						if(s == "W"){
 							context.renderFrame(graphics -> {
-								graphics.setColor(Color.ORANGE);
-			        			rectangle = new Rectangle2D.Float(e.getPosY() * 23, e.getPosX() * 57, 23, 57);
-			        			graphics.fill(rectangle);
+//								graphics.setColor(Color.ORANGE);
+//			        			rectangle = new Rectangle2D.Float(e.getPosY() * heightElem, e.getPosX() * widthElem, heightElem, widthElem);
+//			        			graphics.fill(rectangle);
+			        			BufferedImage img;
+								try {
+									img = ImageIO.read(new File("/home/florian/eclipse-workspace/WallJ/files/wall.gif"));
+									graphics.drawImage(img, e.getPosY() * widthElem, e.getPosX() * heightElem, e.getPosY() * widthElem + widthElem, e.getPosX() * heightElem + heightElem, 0, 0, 150, 150, null);
+								} catch (IOException e1) {
+									// TODO Auto-generated catch block
+									e1.printStackTrace();
+								}
 				    	    });						
 						}
 						if(s == "T") {
 							context.renderFrame(graphics -> {
 								graphics.setColor(Color.BLUE);
-		    	        		rectangle = new Rectangle2D.Float(e.getPosY() * 23, e.getPosX() * 57, 23, 57);
+		    	        		rectangle = new Rectangle2D.Float(e.getPosY() * widthElem, e.getPosX() * heightElem, widthElem, heightElem);
 		    	        		graphics.fill(rectangle);
 							});
 						}
@@ -55,16 +68,24 @@ public class Main {
 							if(((Garbage)e).getStatus()) {
 								context.renderFrame(graphics -> {
 									graphics.setColor(Color.RED);
-				        			rectangle = new Rectangle2D.Float(e.getPosY() * 23, e.getPosX() * 57, 23, 57);
+				        			rectangle = new Rectangle2D.Float(e.getPosY() * widthElem, e.getPosX() * heightElem, widthElem, heightElem);
 				        			graphics.fill(rectangle);
 								});
 							}
 						}
 						if(s == "R") {
 							context.renderFrame(graphics -> {
-								graphics.setColor(Color.GREEN);
-			        			rectangle = new Rectangle2D.Float(e.getPosY() * 23, e.getPosX() * 57, 23, 57);
-			        			graphics.fill(rectangle);
+//								graphics.setColor(Color.GREEN);
+//			        			rectangle = new Rectangle2D.Float(e.getPosY() * heightElem, e.getPosX() * widthElem, heightElem, widthElem);
+//			        			graphics.fill(rectangle);
+			        			BufferedImage img;
+								try {
+									img = ImageIO.read(new File("/home/florian/eclipse-workspace/WallJ/files/wallj.png"));
+									graphics.drawImage(img, e.getPosY() * widthElem, e.getPosX() * heightElem, e.getPosY() * widthElem + widthElem, e.getPosX() * heightElem + heightElem, 0, 0, 1484, 2847, null);
+								} catch (IOException e1) {
+									// TODO Auto-generated catch block
+									e1.printStackTrace();
+								}
 							});
 						}
 					}
@@ -87,12 +108,14 @@ public class Main {
 		    float height = screenInfo.getHeight();
 		    System.out.println("size of the screen (" + width + " x " + height + ")");
 		    context.renderFrame(graphics -> {
-		        graphics.setColor(Color.DARK_GRAY);
+		        graphics.setColor(Color.LIGHT_GRAY);
 		        graphics.fill(new  Rectangle2D.Float(0, 0, width, height));
 		    });
 		    if(lvl1.isValid()) {
 		    	Area area = new Area();
-				area.drawTable(context, lvl1);
+		    	int heightElem = (int)(height/13);
+		    	int widthElem = (int)(width/58);
+				area.drawTable(context, lvl1, heightElem, widthElem);
 		    }
 		    else {
 		    	System.out.println("Le niveau n'est pas valide.");
