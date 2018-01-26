@@ -77,7 +77,7 @@ public class Main {
 	
 	public static void main(String[] args) throws IOException {
 		Level lvl1 = new Level(13, 58);
-		String lvlpath = "/home/florian/eclipse-workspace/Wall-J/files/lvl1.txt";
+		String lvlpath = "/home/florian/eclipse-workspace/WallJ/files/lvl1.txt";
 		lvl1.initializelvl(lvlpath);
 		System.out.println(lvl1.isValid());
 		System.out.println(lvl1);

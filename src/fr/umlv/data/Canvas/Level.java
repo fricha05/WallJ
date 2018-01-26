@@ -52,6 +52,7 @@ public class Level {
 					Col++;
 				}
 				else if(c == ' ') {
+					this.lvl[Line][Col] = new Empty(Line, Col);
 					Col++;
 				}
 				else {
@@ -73,7 +74,7 @@ public class Level {
 				Element e = this.lvl[i][j];
 				if(e != null) {
 					String s = e.toString();
-					if (s != "W" && s != "G" && s != "T" && s != "R") {
+					if (s != "W" && s != "G" && s != "T" && s != "R" && s != " ") {
 						return false;
 					}
 				}
