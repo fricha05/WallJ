@@ -1,4 +1,4 @@
-package fr.umlv.data.Canvas;
+package fr.umlv.data.canvas;
 
 public class Garbage extends Element{
 	private boolean isAlive;

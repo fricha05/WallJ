@@ -1,11 +1,11 @@
 WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
-W                                                        W
-T                                                        T
-T                                                        T
-T                                                        T
-T             G                                          T
-T             G                       R                  T
-T             G                                          T
+W                             W                          W
+TR                            W                          T
+T                             W                          T
+T                         WWWWW                          T
+W             G           W                              T
+W             G           W                              T
+W             G           W                              T
 T                                                        T
 T                                                        T
 T                                                        T

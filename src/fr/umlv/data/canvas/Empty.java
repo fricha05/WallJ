@@ -1,4 +1,4 @@
-package fr.umlv.data.Canvas;
+package fr.umlv.data.canvas;
 
 public class Empty extends Element{
 	public Empty(int posX, int posY) {

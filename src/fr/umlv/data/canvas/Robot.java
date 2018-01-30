@@ -1,4 +1,4 @@
-package fr.umlv.data.Canvas;
+package fr.umlv.data.canvas;
 
 public class Robot extends Element{
 	public Robot(int startPosX, int startPosY) {
@@ -10,20 +10,24 @@ public class Robot extends Element{
 		return "R";
 	}
 	
-	public void moveUp() {
-		this.setPosY(this.getPosY() - 1);
+	public void moveUp(Level lvl) {
+		Empty e = new Empty(this.getPosX(), this.getPosY());
+		lvl.getLvl()[this.getPosX()][this.getPosY()] = e;
+		
+		this.setPosX(this.getPosX() - 1);
+		lvl.getLvl()[this.getPosX()][this.getPosY()] = this;
 	}
 	
 	public void moveRight() {
-		this.setPosX(this.getPosX() + 1);
+		this.setPosY(this.getPosY() + 1);
 	}
 	
 	public void moveLeft() {
-		this.setPosX(this.getPosX() - 1);
+		this.setPosY(this.getPosY() - 1);
 	}
 	
 	public void moveDown() {
-		this.setPosY(this.getPosY() + 1);
+		this.setPosX(this.getPosX() + 1);
 	}
 	
 	public void hide() {

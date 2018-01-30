@@ -1,4 +1,4 @@
-package fr.umlv.data.Canvas;
+package fr.umlv.data.canvas;
 
 public abstract class Element {
 	private int posX;

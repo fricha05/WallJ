@@ -1,4 +1,4 @@
-package fr.umlv.data.Canvas;
+package fr.umlv.data.canvas;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -65,6 +65,16 @@ public class Level {
 		}
 		finally {
 			br.close();
+		}
+	}
+	
+	public void refreshLvl() {
+		for (int i = 0; i < this.nbLine; i++) {
+			for (int j = 0; j < this.nbCol; j++) {
+				if(this.lvl[i][j] == null) {
+					this.lvl[i][j] = new Empty(i, j);
+				}
+			}
 		}
 	}
 	
