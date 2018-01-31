@@ -33,7 +33,7 @@ public class Display {
 //		        			graphics.fill(rectangle);
 		        			BufferedImage img;
 							try {
-								img = ImageIO.read(new File("/home/florian/eclipse-workspace/WallJ/files/wall.gif"));
+								img = ImageIO.read(new File("files/wall.gif"));
 								graphics.drawImage(img, e.getPosY() * widthElem, e.getPosX() * heightElem, e.getPosY() * widthElem + widthElem, e.getPosX() * heightElem + heightElem, 0, 0, 150, 150, null);
 							} catch (IOException e1) {
 								// TODO Auto-generated catch block
@@ -64,7 +64,7 @@ public class Display {
 //		        			graphics.fill(rectangle);
 		        			BufferedImage img;
 							try {
-								img = ImageIO.read(new File("/home/florian/eclipse-workspace/WallJ/files/wallj.png"));
+								img = ImageIO.read(new File("files/wallj.png"));
 								graphics.drawImage(img, e.getPosY() * widthElem, e.getPosX() * heightElem, e.getPosY() * widthElem + widthElem, e.getPosX() * heightElem + heightElem, 0, 0, 1484, 2847, null);
 							} catch (IOException e1) {
 								// TODO Auto-generated catch block
