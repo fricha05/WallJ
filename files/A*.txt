@@ -1,0 +1,15 @@
+A*
+
+retenir :
+- distance à l'origine
+- parent/ prédécesseur
+
+score = dist origine + dist estimée à la cible
+
+3 types de cases:
+1- cases déjà explorées : je sais quel chemin je veux prendre depuis l'origine pour les atteindre (et je connais sa longueur)
+2- cases explorables directements (voisines de cases déjà explorées)
+3- autres cases
+
+
+Exploration : je prends une case de 2 de score minimum -> je les passe dans 1 -> Je découvre de nouvelles cases, je les mets dans 2 -> je mets à jour les chemins/scores des cases dans 2
