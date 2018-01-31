@@ -7,6 +7,8 @@ import java.io.*;
 import fr.umlv.data.canvas.*;
 import fr.umlv.data.graphics.Display;
 import fr.umlv.zen5.*;
+import pathfinding.Node;
+import pathfinding.Nodelist;
 
 public class Main {
 	public static void main(String[] args) throws IOException {
@@ -15,7 +17,7 @@ public class Main {
 		lvl1.initializelvl(lvlpath);
 		System.out.println(lvl1.isValid());
 		System.out.println(lvl1);
-		Application.run(Color.BLACK, context ->{
+		/*Application.run(Color.BLACK, context ->{
 			ScreenInfo screenInfo = context.getScreenInfo();
 		    float width = screenInfo.getWidth();
 		    float height = screenInfo.getHeight();
@@ -30,13 +32,16 @@ public class Main {
 		    	int widthElem = (int)(width/58);
 		    	((Robot) lvl1.getLvl()[2][1]).moveUp(lvl1);
 		    	lvl1.refreshLvl();
-		    	System.out.println(lvl1);
-				area.drawTable(context, lvl1, heightElem, widthElem);
+//				area.drawTable(context, lvl1, heightElem, widthElem);
+		    	
 		    }
 		    else {
 		    	System.out.println("Le niveau n'est pas valide.");
 		    }
-		});
+		});*/
+		Node start = new Node(lvl1.findRobot(), lvl1.findRobot(), lvl1.getLvl()[11][55], null);
+		Nodelist openList = new Nodelist(start);
+		System.out.println(openList);
 		
 		
 	}

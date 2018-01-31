@@ -132,4 +132,15 @@ public class Level {
 		}
 		return str;
 	}
+	
+	public Robot findRobot() {
+		for (int i = 0; i < this.nbLine; i++) {
+			for (int j = 0; j < this.nbCol; j++) {
+				if(this.lvl[i][j].toString() == "R") {
+					return (Robot)this.lvl[i][j];
+				}
+			}
+		}
+		throw new IllegalStateException("Le niveau ne contient pas de robot. Veuillez placer le robot dans le niveau.");
+	}
 }
