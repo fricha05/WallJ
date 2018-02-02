@@ -51,11 +51,12 @@ public class Main {
 		Node curr = goal;
 		boolean done = false;
 		while(!done) {
+			System.out.println(curr.getParent());
 			path.addFirst(curr);
-			curr = curr.getParent();
-			if(curr.equals(start)) {
+			if(curr.getParent() == null) {
 				done = true;
 			}
+			curr = curr.getParent();
 		}
 		return path;
 		
@@ -108,9 +109,8 @@ public class Main {
 		while(!done) {
 			current = getLowest(openList);
 			closedList.add(current);
-			
 			if((current.equals(goal))) {
-				return calcPath(start, goal);
+				return calcPath(start, current);
 			}
 			
 			ArrayList<Node> neighbors = getNeighbors(nodeMap, current);
@@ -118,11 +118,18 @@ public class Main {
 				Node currNeighbor = neighbors.get(i);
 				if(!openList.contains(currNeighbor)) {
 					currNeighbor.setParent(current);
+					currNeighbor.setCostDest(goal.getCurrent());
+					currNeighbor.setCostStart(start.getCurrent());
 					openList.add(currNeighbor);
 				}
 				else {
+					System.out.println(currNeighbor.getCostStart());
+					System.out.println(current.getCostStart());
+					System.out.println();
 					if(currNeighbor.getCostStart() > current.getCostStart()) {
 						currNeighbor.setParent(current);
+						currNeighbor.setCostStart(start.getCurrent());
+						
 					}
 				}
 			}
@@ -165,9 +172,9 @@ public class Main {
 		    }
 		});*/
 		System.out.println("Robot : {" + lvl1.findRobot().getPosX() + ";" + lvl1.findRobot().getPosY() + "}");
-		Node start = new Node(lvl1.findRobot(), lvl1.findRobot(), lvl1.getLvl()[2][5], null);
-		Node end = new Node(lvl1.getLvl()[11][55], lvl1.findRobot(), lvl1.getLvl()[2][5], null);
+		Node start = new Node(lvl1.findRobot(), lvl1.findRobot(), lvl1.getLvl()[3][20], null);
+		Node end = new Node(lvl1.getLvl()[3][20], lvl1.findRobot(), lvl1.getLvl()[3][20], null);
 		List<Node> path = findPath(start, end, lvl1);
-//		System.out.println(path);
+		System.out.println(path);
 	}
 }

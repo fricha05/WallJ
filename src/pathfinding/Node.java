@@ -5,9 +5,9 @@ import fr.umlv.data.canvas.Element;
 public class Node {
 	private final Element current;
 	private Node parent;
-	private final float costStart;
-	private final float costDest;
-	private final float quality;
+	private float costStart;
+	private float costDest;
+	private float quality;
 	
 	public Node(Element current, Element start, Element end, Node parent) {
 		this.current = current;
@@ -21,12 +21,20 @@ public class Node {
 		return this.costStart;
 	}
 	
+	public void setCostStart(Element start) {
+		this.costStart = Math.abs(current.getPosX() - start.getPosX()) + Math.abs(current.getPosY() - start.getPosY());
+	}
+	
 	public Element getCurrent() {
 		return this.current;
 	}
 	
 	public float getCostDest() {
 		return this.costDest;
+	}
+	
+	public void setCostDest(Element end) {
+		this.costDest = Math.abs(end.getPosX() - current.getPosX()) + Math.abs(end.getPosY() - current.getPosY());
 	}
 	
 	public float getQuality() {
@@ -43,7 +51,8 @@ public class Node {
 	
 	@Override
 	public String toString() {
-		return "Parent : " + this.parent + "; Current : " + this.current + "; Cost to Start : " + this.costStart + "; Cost to dest : " + this.costDest + "; Quality : " + this.quality;
+//		return "Parent : " + this.parent + "; Current : " + this.current + "; Cost to Start : " + this.costStart + "; Cost to dest : " + this.costDest + "; Quality : " + this.quality;
+		return "{" + this.current.getPosX() + "," + this.current.getPosY() + "}";
 	}
 	
 	@Override
