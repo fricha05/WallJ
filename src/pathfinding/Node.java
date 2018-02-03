@@ -21,8 +21,12 @@ public class Node {
 		return this.costStart;
 	}
 	
-	public void setCostStart(Element start) {
-		this.costStart = Math.abs(current.getPosX() - start.getPosX()) + Math.abs(current.getPosY() - start.getPosY());
+	public void setCostStart(float costStart) {
+		this.costStart = costStart;
+	}
+	
+	public void setCostStart(Node current) {
+		this.costStart = current.getCostStart() + 1;
 	}
 	
 	public Element getCurrent() {
@@ -41,12 +45,20 @@ public class Node {
 		return this.quality;
 	}
 	
+	public void setQuality() {
+		this.quality = costStart + costDest;
+	}
+	
 	public Node getParent() {
 		return this.parent;
 	}
 	
 	public void setParent(Node parent) {
 		this.parent = parent;
+	}
+	
+	public float calcDistCost(Node n) {
+		return Math.abs(current.getPosX() - n.getCurrent().getPosX()) + Math.abs(current.getPosY() - n.getCurrent().getPosY()) + n.getCostStart();
 	}
 	
 	@Override

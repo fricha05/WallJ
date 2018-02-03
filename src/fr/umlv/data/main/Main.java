@@ -37,7 +37,7 @@ public class Main {
 	public static Node getLowest(ArrayList<Node> list) {
 		Node lowest = list.get(0);
 		for(int i = 0; i < list.size() - 1; i++) {
-			if(list.get(i).getQuality() > list.get(i+1).getQuality()) {
+			if(list.get(i).getCostStart() > list.get(i+1).getCostStart()) {
 				lowest = list.get(i+1);
 			}
 		}
@@ -51,9 +51,8 @@ public class Main {
 		Node curr = goal;
 		boolean done = false;
 		while(!done) {
-			System.out.println(curr.getParent());
 			path.addFirst(curr);
-			if(curr.getParent() == null) {
+			if(curr.getParent() == start) {
 				done = true;
 			}
 			curr = curr.getParent();
@@ -98,6 +97,36 @@ public class Main {
 	}
 	
 	public final static List<Node> findPath(Node start, Node goal, Level lvl) {
+		
+//		Node[][] nodeMap = initNodeMap(lvl, start, goal);
+//		LinkedList<Node> closedList = new LinkedList<Node>();
+//		LinkedList<Node> openList = new LinkedList<Node>();
+//		openList.add(start);
+//		while(!openList.isEmpty()) {
+//			Node current = openList.getLast();
+//			if(current.equals(goal)) {
+//				return calcPath(start, current);
+//			}
+//			
+//			ArrayList<Node> neighbors = getNeighbors(nodeMap, current);
+//			for(int i = 0; i < neighbors.size(); i++) {
+//				Node n = neighbors.get(i);
+//				if(closedList.contains(n) && n.getCostStart() < current.getCostStart() || openList.contains(n) && n.getCostStart() < current.getCostStart()) {
+//					
+//				}
+//				else {
+//					n.setCostStart(current.getCostStart() + 1);
+//					n.setCostDest(goal.getCurrent());
+//					n.setQuality();
+//					openList.add(n);
+//				}
+//			}
+//			closedList.add(current);
+//		}
+		
+		
+		
+		
 		Node[][] nodeMap = initNodeMap(lvl, start, goal);
 		printNodeMap(nodeMap);
 		ArrayList<Node> openList = new ArrayList<Node>();
@@ -109,7 +138,9 @@ public class Main {
 		while(!done) {
 			current = getLowest(openList);
 			closedList.add(current);
+			openList.remove(current);
 			if((current.equals(goal))) {
+				System.out.println(current.getParent().getParent().getParent().getParent());
 				return calcPath(start, current);
 			}
 			
@@ -118,18 +149,13 @@ public class Main {
 				Node currNeighbor = neighbors.get(i);
 				if(!openList.contains(currNeighbor)) {
 					currNeighbor.setParent(current);
-					currNeighbor.setCostDest(goal.getCurrent());
-					currNeighbor.setCostStart(start.getCurrent());
+					currNeighbor.setCostStart(current.getCostStart() + 1);
 					openList.add(currNeighbor);
 				}
 				else {
-					System.out.println(currNeighbor.getCostStart());
-					System.out.println(current.getCostStart());
-					System.out.println();
-					if(currNeighbor.getCostStart() > current.getCostStart()) {
+					if(currNeighbor.getCostStart() > current.getCostStart() + 1) {
 						currNeighbor.setParent(current);
-						currNeighbor.setCostStart(start.getCurrent());
-						
+						currNeighbor.setCostStart(current);	
 					}
 				}
 			}
@@ -139,6 +165,10 @@ public class Main {
 		}
 		System.out.println("Point non accessible");
 		return null; //non accessible
+		
+		
+		
+		
 		
 		
 	}
@@ -172,8 +202,8 @@ public class Main {
 		    }
 		});*/
 		System.out.println("Robot : {" + lvl1.findRobot().getPosX() + ";" + lvl1.findRobot().getPosY() + "}");
-		Node start = new Node(lvl1.findRobot(), lvl1.findRobot(), lvl1.getLvl()[3][20], null);
-		Node end = new Node(lvl1.getLvl()[3][20], lvl1.findRobot(), lvl1.getLvl()[3][20], null);
+		Node start = new Node(lvl1.findRobot(), lvl1.findRobot(), lvl1.getLvl()[2][10], null);
+		Node end = new Node(lvl1.getLvl()[2][10], lvl1.findRobot(), lvl1.getLvl()[2][10], null);
 		List<Node> path = findPath(start, end, lvl1);
 		System.out.println(path);
 	}
