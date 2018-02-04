@@ -1,4 +1,4 @@
-package pathfinding;
+package fr.umlv.data.pathfinding;
 
 import fr.umlv.data.canvas.Element;
 
@@ -63,7 +63,6 @@ public class Node {
 	
 	@Override
 	public String toString() {
-//		return "Parent : " + this.parent + "; Current : " + this.current + "; Cost to Start : " + this.costStart + "; Cost to dest : " + this.costDest + "; Quality : " + this.quality;
 		return "{" + this.current.getPosX() + "," + this.current.getPosY() + "}";
 	}
 	

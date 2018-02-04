@@ -3,7 +3,6 @@ package fr.umlv.data.canvas;
 public abstract class Element {
 	private int posX;
 	private int posY;
-	//mail : katiaaresti@gmail.com karesti
 	public Element(int posX, int posY) {
 		this.setPosX(posX);
 		this.setPosY(posY);

@@ -1,14 +1,18 @@
 package fr.umlv.data.main;
 
-import java.io.*;
+import java.awt.Color;
+import java.awt.geom.Rectangle2D;
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-import fr.umlv.data.canvas.*;
-import pathfinding.Node;
-import pathfinding.Nodelist;
+import fr.umlv.data.canvas.Level;
+import fr.umlv.data.canvas.Robot;
+import fr.umlv.data.graphics.Display;
+import fr.umlv.data.pathfinding.Node;
+import fr.umlv.zen5.Application;
+import fr.umlv.zen5.ScreenInfo;
 
 public class Main {
 	
@@ -41,7 +45,6 @@ public class Main {
 				lowest = list.get(i+1);
 			}
 		}
-//		System.out.println(lowest);
 		return lowest;
 	}
 	
@@ -97,36 +100,6 @@ public class Main {
 	}
 	
 	public final static List<Node> findPath(Node start, Node goal, Level lvl) {
-		
-//		Node[][] nodeMap = initNodeMap(lvl, start, goal);
-//		LinkedList<Node> closedList = new LinkedList<Node>();
-//		LinkedList<Node> openList = new LinkedList<Node>();
-//		openList.add(start);
-//		while(!openList.isEmpty()) {
-//			Node current = openList.getLast();
-//			if(current.equals(goal)) {
-//				return calcPath(start, current);
-//			}
-//			
-//			ArrayList<Node> neighbors = getNeighbors(nodeMap, current);
-//			for(int i = 0; i < neighbors.size(); i++) {
-//				Node n = neighbors.get(i);
-//				if(closedList.contains(n) && n.getCostStart() < current.getCostStart() || openList.contains(n) && n.getCostStart() < current.getCostStart()) {
-//					
-//				}
-//				else {
-//					n.setCostStart(current.getCostStart() + 1);
-//					n.setCostDest(goal.getCurrent());
-//					n.setQuality();
-//					openList.add(n);
-//				}
-//			}
-//			closedList.add(current);
-//		}
-		
-		
-		
-		
 		Node[][] nodeMap = initNodeMap(lvl, start, goal);
 		printNodeMap(nodeMap);
 		ArrayList<Node> openList = new ArrayList<Node>();
@@ -179,10 +152,10 @@ public class Main {
 		lvl1.initializelvl(lvlpath);
 		System.out.println(lvl1.isValid());
 		System.out.println(lvl1);
-		/*Application.run(Color.BLACK, context ->{
+		Application.run(Color.BLACK, context ->{
 			ScreenInfo screenInfo = context.getScreenInfo();
 		    float width = screenInfo.getWidth();
-		    float height = screenInfo.getHeight(System.out.println(openList););
+		    float height = screenInfo.getHeight();
 		    System.out.println("size of the screen (" + width + " x " + height + ")");
 		    context.renderFrame(graphics -> {
 		        graphics.setColor(Color.YELLOW);
@@ -194,17 +167,16 @@ public class Main {
 		    	int widthElem = (int)(width/58);
 		    	((Robot) lvl1.getLvl()[2][1]).moveUp(lvl1);
 		    	lvl1.refreshLvl();
-//				area.drawTable(context, lvl1, heightElem, widthElem);
+				area.drawTable(context, lvl1, heightElem, widthElem);
 		    	
 		    }
 		    else {
 		    	System.out.println("Le niveau n'est pas valide.");
 		    }
-		});*/
-		System.out.println("Robot : {" + lvl1.findRobot().getPosX() + ";" + lvl1.findRobot().getPosY() + "}");
-		Node start = new Node(lvl1.findRobot(), lvl1.findRobot(), lvl1.getLvl()[2][10], null);
-		Node end = new Node(lvl1.getLvl()[2][10], lvl1.findRobot(), lvl1.getLvl()[2][10], null);
-		List<Node> path = findPath(start, end, lvl1);
-		System.out.println(path);
+		});
+//		Node start = new Node(lvl1.findRobot(), lvl1.findRobot(), lvl1.getLvl()[2][10], null);
+//		Node end = new Node(lvl1.getLvl()[2][10], lvl1.findRobot(), lvl1.getLvl()[2][10], null);
+//		List<Node> path = findPath(start, end, lvl1);
+//		System.out.println(path);
 	}
 }

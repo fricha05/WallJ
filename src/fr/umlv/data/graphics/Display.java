@@ -28,9 +28,6 @@ public class Display {
 					String s = e.toString();
 					if(s == "W"){
 						context.renderFrame(graphics -> {
-//							graphics.setColor(Color.ORANGE);
-//		        			rectangle = new Rectangle2D.Float(e.getPosY() * heightElem, e.getPosX() * widthElem, heightElem, widthElem);
-//		        			graphics.fill(rectangle);
 		        			BufferedImage img;
 							try {
 								img = ImageIO.read(new File("files/wall.gif"));
@@ -59,9 +56,6 @@ public class Display {
 					}
 					if(s == "R") {
 						context.renderFrame(graphics -> {
-//							graphics.setColor(Color.GREEN);
-//		        			rectangle = new Rectangle2D.Float(e.getPosY() * heightElem, e.getPosX() * widthElem, heightElem, widthElem);
-//		        			graphics.fill(rectangle);
 		        			BufferedImage img;
 							try {
 								img = ImageIO.read(new File("files/wallj.png"));
